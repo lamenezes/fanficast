@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
+import os
 
+from django.conf import settings
 from django.db import models
 from mezzanine.blog.models import BlogPost
 
@@ -16,6 +18,11 @@ class Episode(BlogPost):
 
     short_description = models.CharField(max_length=256)
 
+    # Best resolutions (from best to worst): 1080x600, 810x450, 540x300
     cover_image = models.ImageField()
 
     episode_link = models.URLField(blank=True)
+
+    @property
+    def cover_image_url(self):
+        return os.path.join(settings.MEDIA_URL, self.cover_image.url)
