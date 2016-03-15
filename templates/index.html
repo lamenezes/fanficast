@@ -24,7 +24,7 @@
             {% if last_episode %}
             <div class="container">
                 <div class="row">
-                    <a href="{{ last_episode.get_absolute_url }}">
+                    <a class="a-no-style" href="{{ last_episode.get_absolute_url }}">
                         <div class="col-md-5 col-md-offset-2">
                             <div class="fanfic-image" class="row" style="">
                                 <img id="fanfic-image-main" src="{{ last_episode.cover_image_url }}" alt="" />
@@ -32,7 +32,7 @@
                         </div>
                     </a>
                     <div class="col-md-3 featured-description">
-                        <a href="{{ last_episode.get_absolute_url }}">
+                        <a class="a-no-style" href="{{ last_episode.get_absolute_url }}">
                             <h5>podcast</h5>
                             <h4>{{ last_episode.title }}</h3>
                             <span>{{ last_episode.short_description }}</span>
