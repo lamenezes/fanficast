@@ -63,3 +63,4 @@ target/
 
 *~
 *.sw[pomn]
+.venv
