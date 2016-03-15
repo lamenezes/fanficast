@@ -21,24 +21,26 @@
     {% block main_wrapper %}
     <div class="col-md-{% block main_col_size %}none{% endblock %} {% block main_class %}{% endblock %}">
         {% block main %}
-        <div class="container">
-            <div class="row">
-                <a href="{{ last_episode.get_absolute_url }}">
-                    <div class="col-md-5 col-md-offset-2">
-                        <div class="fanfic-image" class="row" style="">
-                            <img id="fanfic-image-main" src="{{ last_episode.cover_image_url }}" alt="" />
-                        </div>
-                    </div>
-                </a>
-                <div class="col-md-3 featured-description">
+            {% if last_episode %}
+            <div class="container">
+                <div class="row">
                     <a href="{{ last_episode.get_absolute_url }}">
-                        <h5>podcast</h5>
-                        <h4>{{ last_episode.title }}</h3>
-                        <span>{{ last_episode.short_description }}</span>
+                        <div class="col-md-5 col-md-offset-2">
+                            <div class="fanfic-image" class="row" style="">
+                                <img id="fanfic-image-main" src="{{ last_episode.cover_image_url }}" alt="" />
+                            </div>
+                        </div>
                     </a>
-                </div>
-            </div><!--row-->
-        </div>	
+                    <div class="col-md-3 featured-description">
+                        <a href="{{ last_episode.get_absolute_url }}">
+                            <h5>podcast</h5>
+                            <h4>{{ last_episode.title }}</h3>
+                            <span>{{ last_episode.short_description }}</span>
+                        </a>
+                    </div>
+                </div><!--row-->
+            </div><!--container-->	
+            {% endif %}
         {% endblock %}
     </div>
     {% endblock %}
