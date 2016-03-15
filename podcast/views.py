@@ -9,6 +9,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         episodes = Episode.objects.all().order_by('-publish_date')
-        context['last_episode'] = episodes[0]
-        context['episodes'] = episodes[1:]
+        if episodes:
+            context['last_episode'] = episodes[0]
+            context['episodes'] = episodes[1:]
         return context
