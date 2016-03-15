@@ -16,7 +16,7 @@
 ==================================== */
 
 body {
-	font-family:'Open Sans', Arial, sans-serif;
+	font-family: 'Helvetica', Arial, sans-serif;
 	font-size:14px;
 	font-weight:300;
 	line-height:1.6em;
@@ -157,7 +157,7 @@ header .navbar-default .navbar-nav > .open > a:focus {
 
 
 header .navbar {
-    min-height: 100px;
+    min-height: 80px;
 }
 
 header .navbar-nav > li  {
@@ -314,6 +314,127 @@ ul.nav li.dropdown a {
 	padding:0;
 }
 
+#featured .row {
+    margin-bottom: 0px;
+}
+
+.featured-description {
+    padding: 0px 10px;
+    margin: 0px;
+}
+
+.featured-description span {
+    font-family: 'serif';
+    color: #888;
+}
+
+.featured-description h4 {
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    padding: 0px;
+}
+
+.featured-description h5 {
+    color: #888;
+    font-size: 14px;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+
+.fanfic-description {
+    padding: 0px 10px;
+    margin: 0px;
+}
+
+.fanfic-description p {
+    font-family: 'serif';
+    color: #888;
+    line-height: 130%;
+    font-size: 13px;
+}
+
+.fanfic-description h4 {
+    letter-spacing: -0.5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    padding: 0px;
+}
+
+.fanfic-description h5 {
+    color: #888;
+    font-size: 14px;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.fanfic-image {
+    max-height: 300px;
+    overflow: hidden;
+}
+
+.box-fanfic a {
+    text-decoration: none;
+    background-color: #f8f8f8;
+    color: inherit;
+}
+
+.box-fanfic a:hover {
+    text-decoration: none;
+    background-color: #f8f8f8;
+    color: inherit;
+}
+
+.box-fanfic {
+    background-color: #f8f8f8;
+}
+
+.box-fanfic .fanfic-description {
+    padding: 10px 20px;
+}
+
+#fanfic-image-main {
+    height: 250px;
+}
+
+#nav-logo {
+    height: 35px;
+}
+
+#body {
+    margin-top: 30px;
+    padding-top: 0px;
+}
+
+/*
+ * Section: short-description
+ */
+
+#short-description {
+    color: #333;
+    padding: 50px 0px;
+    text-align: center;
+}
+
+#short-description h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#short-description h5 {
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#short-description span {
+    display: block;
+    font-size: 13px;
+}
+
+
+
 /* ===================================
 6. Sliders
 ==================================== */
@@ -351,7 +472,7 @@ section.callaction {
 #content {
 	position:relative;
 	background:#fff;
-	padding:50px 0 40px 0;
+	padding:0px 0 40px 0;
 }
 
 #content img {
@@ -1516,7 +1637,7 @@ ul.time-post li.time{
 ================================ */
 
 footer{
-	padding:50px 0 0 0;
+	padding:30px 0 0 0;
 	color:#f8f8f8;
 }
 
@@ -1670,9 +1791,6 @@ a.scrollup i {
 a.scrollup i:hover {
 	text-decoration:none;
 }
-
-
-
 
 /* =============================
 18. Position & alignment

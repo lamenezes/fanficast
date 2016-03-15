@@ -13,6 +13,7 @@ jQuery(document).ready(function($) {
 			$('.cta a').removeClass("animated shake");
 			}
 		);
+        /*
 		$(".box").hover(
 			function () {
 			$(this).find('.icon').addClass("animated fadeInDown");
@@ -23,7 +24,7 @@ jQuery(document).ready(function($) {
 			$(this).find('p').removeClass("animated fadeInUp");
 			}
 		);
-		
+		*/
 		
 		$('.accordion').on('show', function (e) {
 		
