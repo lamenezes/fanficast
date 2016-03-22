@@ -1,3 +1,4 @@
+# coding: utf-8
 
 from __future__ import absolute_import, unicode_literals
 import os
@@ -110,11 +111,11 @@ USE_TZ = True
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "pt-br"
 
 # Supported languages
 LANGUAGES = (
-    ('en', _('English')),
+    ('pt-br', _(u'Português')),
 )
 
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces

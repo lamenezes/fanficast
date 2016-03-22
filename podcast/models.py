@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from unicodedata import normalize
 import os
 
 from django.conf import settings
@@ -26,3 +27,11 @@ class Episode(BlogPost):
     @property
     def cover_image_url(self):
         return os.path.join(settings.MEDIA_URL, self.cover_image.url)
+
+    def get_slug(self):
+        slug = super(Episode, self).get_slug()
+        try:
+            slug = normalize('NFKD', slug.decode('utf-8')).encode('ASCII', 'ignore')
+        except:
+            slug = normalize('NFKD', slug).encode('ASCII', 'ignore')
+        return slug

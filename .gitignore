@@ -64,3 +64,6 @@ target/
 *~
 *.sw[pomn]
 .venv
+media/
+env
+.tmp/
