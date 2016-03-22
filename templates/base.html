@@ -94,7 +94,7 @@
         {% endnevercache %}
     </div>
 
-    {% block breadcrumb_wrapper %}
+    <!--{#{% block breadcrumb_wrapper %}
     <section id="inner-headline">
         <div class="container">
             <div class="row">
@@ -106,11 +106,11 @@
                             {% endblock breadcrumb_menu %}
                         {% endspaceless %}
                     </ul>
-                </div><!--col-lg-12-->
-            </div><!--row-->
-        </div><!--container-->
+                </div>
+            </div>
+        </div>
     </section>
-    {% endblock breadcrumb_wrapper %}
+    {% endblock breadcrumb_wrapper %}#}-->
 
     {% block title_wrapper %}
     <section class="callaction">
@@ -150,9 +150,9 @@
 
                 {% block right_wrapper %}
                 <div class="col-md-{% block right_col_size %}3{% endblock %} {% block right_class %}right{% endblock %}">
-                    {% nevercache %}
+                    <!--{#{% nevercache %}
                         {% include "includes/user_panel.html" %}
-                    {% endnevercache %}
+                    {% endnevercache %}#}-->
 
                     <aside class="right-sidebar">
                         {% block right_panel %}
