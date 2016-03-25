@@ -95,6 +95,7 @@
 <div class="widget">
 <h5 class="widgetheading">{% trans "Feeds" %}</h5>
 
+<!--{#
 {% if tag %}
     <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
     <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
@@ -111,6 +112,9 @@
     <a href="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
     <a href="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
 {% endif %}
+#}-->
+<a href="http://feeds.feedburner.com/fanficast" target="_blank">{% trans "RSS" %}</a>
+
 </div>
 {% endblock %}
 
