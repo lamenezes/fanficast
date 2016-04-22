@@ -5,7 +5,7 @@ from mezzanine.blog.admin import BlogPostAdmin
 from models import Episode
 
 episode_extra_fieldsets = [
-    (None, {'fields': ('short_description', 'cover_image', 'episode_link')}),
+    (None, {'fields': ('short_description', 'cover_image', 'episode_link', 'length')}),
 ]
 
 
