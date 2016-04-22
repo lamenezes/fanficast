@@ -4,6 +4,8 @@ import os
 
 from django.conf import settings
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
+
 from mezzanine.blog.models import BlogPost
 
 
@@ -20,9 +22,17 @@ class Episode(BlogPost):
     short_description = models.CharField(max_length=256)
 
     # Best resolutions (from best to worst): 1080x600, 810x450, 540x300
-    cover_image = models.ImageField()
+    cover_image = models.ImageField(verbose_name=_('Cover Image (810x450)'))
+
+    # Best resolutions (from best to worst): 1080x600, 810x450, 540x300
+    cover_image_square = models.ImageField(verbose_name=_('Square Cover Image (600x600)'),
+                                           blank=True)
 
     episode_link = models.URLField(blank=True)
+
+    length = models.TimeField()
+
+    is_episode = True
 
     @property
     def cover_image_url(self):
