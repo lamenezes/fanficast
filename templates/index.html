@@ -32,21 +32,20 @@
                     <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
                         <meta itemprop="byArtist" content="Fanficast">
                         <meta itemprop="duration" content="{{ last_episode.length|time:"H:i:s" }}">
-                        <meta itemprop="image"
-                              content="{{ request.build_absolute_uri|slice:":-1" }}{{ last_episode.cover_image_url }}">
 
-                        <a class="a-no-style" href="{{ last_episode.get_absolute_url }}">
+                        <a itemprop="url" class="a-no-style" href="{{ last_episode.get_absolute_url }}">
                             <div class="col-md-5 col-md-offset-2">
                                 <div class="fanfic-image row" style="">
-                                    <img id="fanfic-image-main" src="{{ last_episode.cover_image_url }}" alt="" />
+                                    <img id="fanfic-image-main" src="{{ last_episode.cover_image_url }}"
+                                         alt="{{ last_episode.title }}" itemprop="image"/>
                                 </div>
                             </div>
                         </a>
                         <div class="col-md-3 featured-description">
-                            <a class="a-no-style" href="{{ last_episode.get_absolute_url }}">
-                                <h5>podcast</h5>
+                            <a class="a-no-style" href="{{ last_episode.get_absolute_url }}" itemprop="url">
+                                <h5>fanficast</h5>
                                 <h4 itemprop="name">{{ last_episode.title }}</h4>
-                                <span>{{ last_episode.short_description }}</span>
+                                <span itemprop="description">{{ last_episode.short_description }}</span>
                             </a>
                         </div>
                     </article>
@@ -89,15 +88,13 @@
                         <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
                             <meta itemprop="byArtist" content="Fanficast">
                             <meta itemprop="duration" content="{{ episode.length|time:"H:i:s" }}">
-                            <meta itemprop="image" 
-                                  content="{{ request.build_absolute_uri|slice:":-1" }}{{ episode.cover_image_url }}">
-                            <a href="{{ episode.get_absolute_url }}">
+                            <a itemprop="url" href="{{ episode.get_absolute_url }}">
                                 <div class="fanfic-image">
-                                    <img src="{{ episode.cover_image_url }}" />
+                                    <img itemprop="image" src="{{ episode.cover_image_url }}" />
                                 </div>
                                 <div class="fanfic-description">
                                     <h4 itemprop="name">{{ episode.title }}</h4>
-                                    <p>
+                                    <p itemprop="description">
                                     {{ episode.short_description }}
                                     </p>
                                 </div>
