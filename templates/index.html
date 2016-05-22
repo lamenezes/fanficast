@@ -31,7 +31,7 @@
                 <div class="row">
                     <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
                         <meta itemprop="byArtist" content="Fanficast">
-                        <meta itemprop="duration" content="{{ last_episode.length|time:"H:i:s" }}">
+                        <meta itemprop="duration" content="{{ last_episode.length }}">
 
                         <a itemprop="url" class="a-no-style" href="{{ last_episode.get_absolute_url }}">
                             <div class="col-md-5 col-md-offset-2">
@@ -87,7 +87,7 @@
                     <div class="box box-fanfic" style="background-color: #fcfcfc">
                         <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
                             <meta itemprop="byArtist" content="Fanficast">
-                            <meta itemprop="duration" content="{{ episode.length|time:"H:i:s" }}">
+                            <meta itemprop="duration" content="{{ episode.length }}">
                             <a itemprop="url" href="{{ episode.get_absolute_url }}">
                                 <div class="fanfic-image">
                                     <img itemprop="image" src="{{ episode.cover_image_url }}" />
