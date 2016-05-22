@@ -30,7 +30,7 @@ class Episode(BlogPost):
 
     episode_link = models.URLField(blank=True)
 
-    length = models.TimeField()
+    length = models.DurationField()
 
     is_episode = True
 
