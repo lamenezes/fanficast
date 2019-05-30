@@ -1,2 +1,4 @@
+django-contrib-comments==1.8.0
+django==1.8
 Mezzanine==4.1.0
 mysql-python
