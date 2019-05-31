@@ -3,228 +3,228 @@
 {% load pages_tags mezzanine_tags i18n staticfiles %}
 
 <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="{% block meta_keywords %}fanfic, podcast, fanfiction, fan fiction, livro, anime, mangá, séries, filmes{% endblock %}">
-    <meta name="description" content="{% block meta_description %}Entendendo Fanfics. Novos episódios todo mês. Por Ana & Nchan.{% endblock %}">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="{% block meta_keywords %}fanfic, podcast, fanfiction, fan fiction, livro, anime, mangá, séries, filmes{% endblock %}">
+  <meta name="description" content="{% block meta_description %}Entendendo Fanfics. Novos episódios todo mês. Por Ana & Nchan.{% endblock %}">
 
-    <meta property="og:site_name" content="{{ settings.SITE_TITLE }}">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    {% block meta_og %}
-        <meta property="og:description" content="">
-        <meta property="og:title" content="">
-        <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{% static "img/fc_fundo.png" %}">
-        <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{% static "img/fc_fb.png" %}">
-    {% endblock meta_og %}
+  <meta property="og:site_name" content="{{ settings.SITE_TITLE }}">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  {% block meta_og %}
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{% static "img/fc_fundo.png" %}">
+    <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{% static "img/fc_fb.png" %}">
+  {% endblock meta_og %}
 
 
-    <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-    <link rel="shortcut icon" href="{% static "img/favicon.png" %}">
+  <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+  <link rel="shortcut icon" href="{% static "img/favicon.png" %}">
 
-    {% ifinstalled mezzanine.blog %}
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
-        <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+  {% ifinstalled mezzanine.blog %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+  {% endifinstalled %}
+
+  {% compress css %}
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/fancybox/jquery.fancybox.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/flexslider.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+    <link rel="stylesheet" href="{% static "skins/default.css" %}">
+
+    {% if LANGUAGE_BIDI %}
+      <link rel="stylesheet" href="{% static "css/rtl.css" %}">
+    {% endif %}
+
+    {% ifinstalled cartridge.shop %}
+      <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
+      {% if LANGUAGE_BIDI %}
+        <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
+      {% endif %}
     {% endifinstalled %}
 
-    {% compress css %}
-        <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-        <link rel="stylesheet" href="{% static "css/fancybox/jquery.fancybox.css" %}">
+    {% block extra_css %}{% endblock %}
+  {% endcompress %}
 
-        <link rel="stylesheet" href="{% static "css/flexslider.css" %}">
+  {% compress js %}
+    <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+    <script src="{% static "js/bootstrap-extras.js" %}"></script>
+    {% block extra_js %}{% endblock %}
+    {% include "includes/footer_scripts.html" %}
+  {% endcompress %}
 
-        <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
-        <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <!--[if lt IE 9]>
+  <script src="{% static "js/html5shiv.js" %}"></script>
+  <script src="{% static "js/respond.min.js" %}"></script>
+  <![endif]-->
 
-        <link rel="stylesheet" href="{% static "skins/default.css" %}">
-
-        {% if LANGUAGE_BIDI %}
-            <link rel="stylesheet" href="{% static "css/rtl.css" %}">
-        {% endif %}
-
-        {% ifinstalled cartridge.shop %}
-            <link rel="stylesheet" href="{% static "css/cartridge.css" %}">
-            {% if LANGUAGE_BIDI %}
-                <link rel="stylesheet" href="{% static "css/cartridge.rtl.css" %}">
-            {% endif %}
-        {% endifinstalled %}
-
-        {% block extra_css %}{% endblock %}
-    {% endcompress %}
-
-    {% compress js %}
-        <script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
-        <script src="{% static "js/bootstrap.js" %}"></script>
-        <script src="{% static "js/bootstrap-extras.js" %}"></script>
-        {% block extra_js %}{% endblock %}
-        {% include "includes/footer_scripts.html" %}
-    {% endcompress %}
-
-    <!--[if lt IE 9]>
-    <script src="{% static "js/html5shiv.js" %}"></script>
-    <script src="{% static "js/respond.min.js" %}"></script>
-    <![endif]-->
-
-    {% block extra_head %}{% endblock %}
+  {% block extra_head %}{% endblock %}
 </head>
 
 <body id="{% block body_id %}body{% endblock %}">
-    <div class="hidden-xs" style="margin-top: 50px;">
-    </div>
-    <div id="wrapper">
-        <header>
-            <div class="navbar navbar-default navbar-static-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/">
-                            <img id="nav-logo" src="{% static "img/logo_txt.png" %}" />
-                        </a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                           {% page_menu "pages/menus/dropdown.html" %}
-                    </div>
-                </div>
-            </div><!--navbar-->
-        </header>
-
-    {% block all_content %}
-    <div class="container">
-        {% nevercache %}
-            {% if messages %}
-                <div class="messages">
-                    {% for message in messages %}
-                        <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            {{ message }}
-                        </div><!--alert-->
-                    {% endfor %}
-                </div><!--messages-->
-            {% endif %}
-        {% endnevercache %}
-    </div>
-
-    <!--{#{% block breadcrumb_wrapper %}
-    <section id="inner-headline">
+  <div class="hidden-xs" style="margin-top: 50px;">
+  </div>
+  <div id="wrapper">
+    <header>
+      <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="breadcrumb">
-                        {% spaceless %}
-                            {% block breadcrumb_menu %}
-                                {% page_menu "pages/menus/breadcrumb.html" %}
-                            {% endblock breadcrumb_menu %}
-                        {% endspaceless %}
-                    </ul>
-                </div>
-            </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img id="nav-logo" src="{% static "img/logo_txt.png" %}" />
+            </a>
+          </div>
+          <div class="navbar-collapse collapse">
+               {% page_menu "pages/menus/dropdown.html" %}
+          </div>
         </div>
-    </section>
-    {% endblock breadcrumb_wrapper %}#}-->
+      </div><!--navbar-->
+    </header>
 
-    {% block title_wrapper %}
-    <section class="callaction">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="big-cta">
-                        <div class="cta-text">
-                        <h2>{% block title %}{% endblock %}</h2>
-                        </div>
-                    </div>
-                </div>
-            </div><!--row-->
-        </div><!--container-->
-    </section>
-    {% endblock title_wrapper %}
+  {% block all_content %}
+  <div class="container">
+    {% nevercache %}
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              {{ message }}
+            </div><!--alert-->
+          {% endfor %}
+        </div><!--messages-->
+      {% endif %}
+    {% endnevercache %}
+  </div>
 
-    <section id="{% block section_id %}content{% endblock %}">
-        <div class="container">
-            <div class="row">
-                {% block left_wrapper %}
-                <div class="col-md-{% block left_col_size %}2{% endblock %} {% block left_class %}left{% endblock %}">
-                    {% block left_panel %}
-                        <div class="panel panel-default tree">
-                            {% page_menu "pages/menus/tree.html" %}
-                        </div>
-                    {% endblock left_panel %}
-                </div>
-                {% endblock %}
-
-                {% block main_wrapper %}
-                <div class="col-md-{% block main_col_size %}7{% endblock %} {% block main_class %}middle{% endblock %}">
-                    {% block main %}
-                    {% endblock main %}
-                </div>
-                {% endblock main_wrapper %}
-
-                {% block right_wrapper %}
-                <div class="col-md-{% block right_col_size %}3{% endblock %} {% block right_class %}right{% endblock %}">
-                    <!--{#{% nevercache %}
-                        {% include "includes/user_panel.html" %}
-                    {% endnevercache %}#}-->
-
-                    <aside class="right-sidebar">
-                        {% block right_panel %}
-                            {% ifinstalled mezzanine.twitter %}
-                                {% include "twitter/tweets.html" %}
-                            {% endifinstalled %}
-                        {% endblock %}
-                    </aside>
-                </div>
-                {% endblock right_wrapper %}
-            </div><!--row-->
-        </div><!--container-->
-    </section>
-    {% endblock all_content %}
-
-    <footer>
-        <div class="container">
-            {% page_menu "pages/menus/footer.html" %}
-            <div id="sub-footer">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="copyright">
-                            <p>
-                            </p>
-                            <p>
-                                <span>Template por </span><a target="_blank" href="http://bootstraptaste.com">Bootstraptaste</a> adaptado para o Mezzanine por <a target="_blank" href="http://thecodinghouse.in">CodingHouse</a>
-                            </p>
-                            <p>
-                                <span>Código-fonte no </span><a target="_blank" href="http://github.com/lamenezes/fanficast">Github</a>.
-                            </p>
-                        </div><!--copyright-->
-                    </div><!--row-->
-                    <div class="col-lg-6">
-                        <ul class="social-network">
-                            <li>
-                                <a target="_blank" data-placement="top" href="https://www.facebook.com/fanficast.br/" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a target="_blank" data-placement="top" href="https://twitter.com/fanficast" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                            </li>
-                        </ul>
-                    </div><!--col-lg-6-->
-                </div><!--row-->
-            </div><!--sub-footer-->
-        </div><!--container-->
-    </footer>
+  <!--{#{% block breadcrumb_wrapper %}
+  <section id="inner-headline">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="breadcrumb">
+            {% spaceless %}
+              {% block breadcrumb_menu %}
+                {% page_menu "pages/menus/breadcrumb.html" %}
+              {% endblock breadcrumb_menu %}
+            {% endspaceless %}
+          </ul>
+        </div>
+      </div>
     </div>
+  </section>
+  {% endblock breadcrumb_wrapper %}#}-->
 
-    {% compress js %}
-    <script src="{% static "js/jquery.easing.1.3.js"%}"></script>
-    <script src="{% static "js/jquery.fancybox.pack.js"%}"></script>
-    <script src="{% static "js/jquery.fancybox-media.js"%}"></script>
-    <script src="{% static "js/google-code-prettify/prettify.js"%}"></script>
-    <script src="{% static "js/portfolio/jquery.quicksand.js"%}"></script>
-    <script src="{% static "js/portfolio/setting.js"%}"></script>
-    <script src="{% static "js/jquery.flexslider.js"%}"></script>
-    <script src="{% static "js/animate.js"%}"></script>
-    <script src="{% static "js/custom.js"%}"></script>
-    {% endcompress %}
+  {% block title_wrapper %}
+  <section class="callaction">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="big-cta">
+            <div class="cta-text">
+            <h2>{% block title %}{% endblock %}</h2>
+            </div>
+          </div>
+        </div>
+      </div><!--row-->
+    </div><!--container-->
+  </section>
+  {% endblock title_wrapper %}
+
+  <section id="{% block section_id %}content{% endblock %}">
+    <div class="container">
+      <div class="row">
+        {% block left_wrapper %}
+        <div class="col-md-{% block left_col_size %}2{% endblock %} {% block left_class %}left{% endblock %}">
+          {% block left_panel %}
+            <div class="panel panel-default tree">
+              {% page_menu "pages/menus/tree.html" %}
+            </div>
+          {% endblock left_panel %}
+        </div>
+        {% endblock %}
+
+        {% block main_wrapper %}
+        <div class="col-md-{% block main_col_size %}7{% endblock %} {% block main_class %}middle{% endblock %}">
+          {% block main %}
+          {% endblock main %}
+        </div>
+        {% endblock main_wrapper %}
+
+        {% block right_wrapper %}
+        <div class="col-md-{% block right_col_size %}3{% endblock %} {% block right_class %}right{% endblock %}">
+          <!--{#{% nevercache %}
+            {% include "includes/user_panel.html" %}
+          {% endnevercache %}#}-->
+
+          <aside class="right-sidebar">
+            {% block right_panel %}
+              {% ifinstalled mezzanine.twitter %}
+                {% include "twitter/tweets.html" %}
+              {% endifinstalled %}
+            {% endblock %}
+          </aside>
+        </div>
+        {% endblock right_wrapper %}
+      </div><!--row-->
+    </div><!--container-->
+  </section>
+  {% endblock all_content %}
+
+  <footer>
+    <div class="container">
+      {% page_menu "pages/menus/footer.html" %}
+      <div id="sub-footer">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="copyright">
+              <p>
+              </p>
+              <p>
+                <span>Template por </span><a target="_blank" href="http://bootstraptaste.com">Bootstraptaste</a> adaptado para o Mezzanine por <a target="_blank" href="http://thecodinghouse.in">CodingHouse</a>
+              </p>
+              <p>
+                <span>Código-fonte no </span><a target="_blank" href="http://github.com/lamenezes/fanficast">Github</a>.
+              </p>
+            </div><!--copyright-->
+          </div><!--row-->
+          <div class="col-lg-6">
+            <ul class="social-network">
+              <li>
+                <a target="_blank" data-placement="top" href="https://www.facebook.com/fanficast.br/" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+              </li>
+              <li>
+                <a target="_blank" data-placement="top" href="https://twitter.com/fanficast" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+              </li>
+            </ul>
+          </div><!--col-lg-6-->
+        </div><!--row-->
+      </div><!--sub-footer-->
+    </div><!--container-->
+  </footer>
+  </div>
+
+  {% compress js %}
+  <script src="{% static "js/jquery.easing.1.3.js"%}"></script>
+  <script src="{% static "js/jquery.fancybox.pack.js"%}"></script>
+  <script src="{% static "js/jquery.fancybox-media.js"%}"></script>
+  <script src="{% static "js/google-code-prettify/prettify.js"%}"></script>
+  <script src="{% static "js/portfolio/jquery.quicksand.js"%}"></script>
+  <script src="{% static "js/portfolio/setting.js"%}"></script>
+  <script src="{% static "js/jquery.flexslider.js"%}"></script>
+  <script src="{% static "js/animate.js"%}"></script>
+  <script src="{% static "js/custom.js"%}"></script>
+  {% endcompress %}
 </body>
 </html>

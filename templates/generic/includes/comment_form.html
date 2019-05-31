@@ -3,9 +3,9 @@
 <form method="post" id="contactform" action="{{ comment_url }}#comment">
    
 	{% for hidden in comment_form.hidden_fields %}
-    {{ hidden }}
-    {% endfor %}
-    <div class="row">
+  {{ hidden }}
+  {% endfor %}
+  <div class="row">
 		<div class="col-lg-4 field">
 			 <input type="text" value="{{comment_form.name.value}}" name="name" maxlength="50" id="id_name" class="" placeholder="* Enter your full name" >
 			  

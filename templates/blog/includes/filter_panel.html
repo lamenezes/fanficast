@@ -11,7 +11,7 @@
 <li>
 <img class="pull-left" alt="" src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 65 65 %}">
 <h6><a href="{{ recent_post.get_absolute_url }}"
-    >{{ recent_post.title }}</a>
+  >{{ recent_post.title }}</a>
 </h6>
 </li>
 {% endfor %}
@@ -27,7 +27,7 @@
 <ul class="cat">
 {% for category in categories %}
 <li><a href="{% url "blog_post_list_category" category.slug %}"
-    >{{ category }}</a> ({{ category.post_count }})</li>
+  >{{ category }}</a> ({{ category.post_count }})</li>
 {% endfor %}
 </ul>
 </div>
@@ -43,9 +43,9 @@
 <ul class="tags">
 {% for tag in tags %}
 <li>
-    <a href="{% url "blog_post_list_tag" tag.slug %}"
-        class="">{{ tag }} ({{ tag.item_count }})</a>
-    
+  <a href="{% url "blog_post_list_tag" tag.slug %}"
+    class="">{{ tag }} ({{ tag.item_count }})</a>
+  
 </li>
 {% endfor %}
 </ul>
@@ -61,9 +61,9 @@
 
 <ul class="cat">
 {% for author in authors %}
-    <li><a href="{% url "blog_post_list_author" author.username %}"
-        >{{ author.get_full_name|default:author.username }} ({{ author.post_count }})</a>
-        </li>
+  <li><a href="{% url "blog_post_list_author" author.username %}"
+    >{{ author.get_full_name|default:author.username }} ({{ author.post_count }})</a>
+    </li>
 {% endfor %}
 </ul>
 </div>
@@ -76,15 +76,15 @@
 <div class="widget">
 <h5 class="widgetheading">{% trans "Archive" %}</h5>
 {% for month in months %}
-    {% ifchanged month.date.year %}
-        {% if not forloop.first %}</ul>{% endif %}
-       
+  {% ifchanged month.date.year %}
+    {% if not forloop.first %}</ul>{% endif %}
+     
 	<ul class="cat">
-    {% endifchanged %}
-    <li><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}"
-        >{{ month.date|date:"F" }}</a> ({{ month.post_count }})</li>
+  {% endifchanged %}
+  <li><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}"
+    >{{ month.date|date:"F" }}</a> ({{ month.post_count }})</li>
 {% endfor %}
-    </ul>
+  </ul>
 </div>
 {% endif %}
 {% endblock %}
@@ -97,20 +97,20 @@
 
 <!--{#
 {% if tag %}
-    <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
-    <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
+  <a href="{% url "blog_post_feed_tag" tag.slug "rss" %}">{% trans "RSS" %}</a> /
+  <a href="{% url "blog_post_feed_tag" tag.slug "atom" %}">{% trans "Atom" %}</a>
 {% endif %}
 {% if category %}
-    <a href="{% url "blog_post_feed_category" category.slug "rss" %}">{% trans "RSS" %}</a> /
-    <a href="{% url "blog_post_feed_category" category.slug "atom" %}">{% trans "Atom" %}</a>
+  <a href="{% url "blog_post_feed_category" category.slug "rss" %}">{% trans "RSS" %}</a> /
+  <a href="{% url "blog_post_feed_category" category.slug "atom" %}">{% trans "Atom" %}</a>
 {% endif %}
 {% if author %}
-    <a href="{% url "blog_post_feed_author" author.username "rss" %}">{% trans "RSS" %}</a> /
-    <a href="{% url "blog_post_feed_author" author.username "atom" %}">{% trans "Atom" %}</a>
+  <a href="{% url "blog_post_feed_author" author.username "rss" %}">{% trans "RSS" %}</a> /
+  <a href="{% url "blog_post_feed_author" author.username "atom" %}">{% trans "Atom" %}</a>
 {% endif %}
 {% if not tag and not category and not author %}
-    <a href="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
-    <a href="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
+  <a href="{% url "blog_post_feed" "rss" %}">{% trans "RSS" %}</a> /
+  <a href="{% url "blog_post_feed" "atom" %}">{% trans "Atom" %}</a>
 {% endif %}
 #}-->
 <a href="http://feeds.feedburner.com/fanficast" target="_blank">{% trans "RSS" %}</a>
