@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block meta_og %}
-  <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{{ last_episode.cover_image.url }}">
+  <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{{ latest_episode.cover_image.url }}">
   <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{% static "img/fc_fb.png" %}">
 {% endblock meta_og %}
 
@@ -26,32 +26,32 @@
   {% block main_wrapper %}
   <div class="col-md-{% block main_col_size %}none{% endblock %} {% block main_class %}{% endblock %}">
   {% block main %}
-    {% if last_episode %}
+    {% with latest_episode=episodes|first %}
     <div class="container">
-    <div class="row">
-      <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
-      <meta itemprop="byArtist" content="Fanficast">
-      <meta itemprop="duration" content="{{ last_episode.length }}">
+      <div class="row">
+        <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+        <meta itemprop="byArtist" content="Fanficast">
+        <meta itemprop="duration" content="{{ latest_episode.length }}">
 
-      <a itemprop="url" class="a-no-style" href="{{ last_episode.get_absolute_url }}">
-        <div class="col-md-5 col-md-offset-2">
-        <div class="fanfic-image row" style="">
-          <img id="fanfic-image-main" src="{{ last_episode.cover_image_url }}"
-           alt="{{ last_episode.title }}" itemprop="image"/>
-        </div>
-        </div>
-      </a>
-      <div class="col-md-3 featured-description">
-        <a class="a-no-style" href="{{ last_episode.get_absolute_url }}">
-        <h5>fanficast</h5>
-        <h4 itemprop="name">{{ last_episode.title }}</h4>
-        <span itemprop="description">{{ last_episode.short_description }}</span>
+        <a itemprop="url" class="a-no-style" href="{{ latest_episode.get_absolute_url }}">
+          <div class="col-md-5 col-md-offset-2">
+            <div class="fanfic-image row" style="">
+              <img id="fanfic-image-main" src="{{ latest_episode.cover_image_url }}"
+               alt="{{ latest_episode.title }}" itemprop="image"/>
+            </div>
+          </div>
         </a>
-      </div>
-      </article>
-    </div><!--row-->
+        <div class="col-md-3 featured-description">
+          <a class="a-no-style" href="{{ latest_episode.get_absolute_url }}">
+          <h5>fanficast</h5>
+          <h4 itemprop="name">{{ latest_episode.title }}</h4>
+          <span itemprop="description">{{ latest_episode.short_description }}</span>
+          </a>
+        </div>
+        </article>
+      </div><!--row-->
     </div><!--container-->	
-    {% endif %}
+    {% endwith %}
   {% endblock %}
   </div>
   {% endblock %}
@@ -79,7 +79,7 @@
 <section id="content">
 	<div class="container">
   <div class="col-lg-12">
-    {% for episode in episodes %}
+    {% for episode in episodes|slice:"1:" %}
     {% if forloop.counter|divisibleby:"3" %}
     <div class="row">
     {% endif %}
