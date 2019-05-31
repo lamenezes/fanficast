@@ -1,6 +1,5 @@
 # coding: utf-8
 
-from __future__ import absolute_import, unicode_literals
 import os
 
 from django import VERSION as DJANGO_VERSION
@@ -151,6 +150,7 @@ DATABASES = {
         "NAME": "fanficast",
         # Not used with sqlite3.
         "USER": "luiz",
+        "PASSWORD": "fanficast",
     }
 }
 
@@ -281,7 +281,7 @@ MIDDLEWARE_CLASSES = (
     "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
 
-# Store these package names here as they may change in the future since
+# Store these package names here as they may change in the since
 # at the moment we are using custom forks of them.
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"

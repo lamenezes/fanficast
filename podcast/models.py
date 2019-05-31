@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from unicodedata import normalize
 import os
 
@@ -25,8 +24,7 @@ class Episode(BlogPost):
     cover_image = models.ImageField(verbose_name=_('Cover Image (810x450)'))
 
     # Best resolutions (from best to worst): 1080x600, 810x450, 540x300
-    cover_image_square = models.ImageField(verbose_name=_('Square Cover Image (600x600)'),
-                                           blank=True)
+    cover_image_square = models.ImageField(verbose_name=_('Square Cover Image (600x600)'), blank=True)
 
     episode_link = models.URLField(blank=True)
 
@@ -42,6 +40,6 @@ class Episode(BlogPost):
         slug = super(Episode, self).get_slug()
         try:
             slug = normalize('NFKD', slug.decode('utf-8')).encode('ASCII', 'ignore')
-        except:
+        except Exception:
             slug = normalize('NFKD', slug).encode('ASCII', 'ignore')
         return slug

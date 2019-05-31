@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from models import Episode
+from .models import Episode
 
 
 class HomeView(TemplateView):
