@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="col-lg-12">
+    {% for episode in episodes %}
+      {% if forloop.counter|divisibleby:cols %}
+      <div class="row">
+      {% endif %}
+      <div class="col-md-4">
+        <div class="box box-fanfic" style="background-color: #fcfcfc">
+        <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+          <meta itemprop="byArtist" content="Fanficast">
+          <meta itemprop="duration" content="{{ episode.length }}">
+          <a itemprop="url" href="{{ episode.get_absolute_url }}">
+          <div class="fanfic-image">
+            <img itemprop="image" src="{{ episode.cover_image_url }}" />
+          </div>
+          <div class="fanfic-description">
+            <h4 itemprop="name">{{ episode.title }}</h4>
+            <p itemprop="description">
+            {{ episode.short_description }}
+            </p>
+          </div>
+          </a>
+        </article>
+        </div><!--box-->
+      </div><!--col-md-4-->
+      {% if forloop.counter|divisibleby:"3" %}
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div><!--col-lg-12-->
+</div><!--container-->
