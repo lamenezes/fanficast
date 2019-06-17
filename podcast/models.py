@@ -38,8 +38,5 @@ class Episode(BlogPost):
 
     def get_slug(self):
         slug = super(Episode, self).get_slug()
-        try:
-            slug = normalize('NFKD', slug.decode('utf-8')).encode('ASCII', 'ignore')
-        except Exception:
-            slug = normalize('NFKD', slug).encode('ASCII', 'ignore')
-        return slug
+        normalized_slug = normalize('NFKD', slug)
+        return normalized_slug.encode('ASCII', 'ignore').decode()
