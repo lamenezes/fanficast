@@ -1,5 +1,3 @@
-.PHONY: docs
-
 clean: clean-eggs clean-build clean-docs
 	@find . -iname '*.pyc' -delete
 	@find . -iname '*.pyo' -delete
@@ -21,7 +19,6 @@ clean-docs:
 
 run:
 	python manage.py runserver
-
 
 test:
 	pytest -xs
