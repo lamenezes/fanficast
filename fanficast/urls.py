@@ -21,7 +21,7 @@ if settings.USE_MODELTRANSLATION:
 
 urlpatterns += [
     url("^$", HomeView.as_view(), name="home"),
-    url("^episodes/$", EpisodeListView.as_view(), name="home"),
+    url("^episodes/$", EpisodeListView.as_view(), name="episodes"),
 
     # add application URLs above
     url("^", include("mezzanine.urls")),

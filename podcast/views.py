@@ -3,8 +3,15 @@ from django.views.generic import ListView
 from .models import Episode
 
 
-class HomeView(ListView):
+class EpisodeSettingsMixin:
     template_name = 'index.html'
-    paginate_by = 10
-    queryset = Episode.objects.order_by('-publish_date')
     context_object_name = 'episodes'
+    queryset = Episode.objects.order_by('-publish_date')
+
+
+class HomeView(EpisodeSettingsMixin, ListView):
+    queryset = EpisodeSettingsMixin.queryset[:10]
+
+
+class EpisodeListView(EpisodeSettingsMixin, ListView):
+    paginate_by = 10
