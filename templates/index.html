@@ -3,16 +3,14 @@
 {% load i18n  mezzanine_tags staticfiles %}
 {% block meta_title %}{% trans "Home" %}{% endblock %}
 {% block title %}{% trans "Home" %}{% endblock %}
-{% block breadcrumb_wrapper %}
-{% endblock %}
+{% block breadcrumb_wrapper %}{% endblock %}
 
 {% block meta_og %}
   <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{{ latest_episode.cover_image.url }}">
   <meta property="og:image" content="{{ request.build_absolute_uri|slice:":-1" }}{% static "img/fc_fb.png" %}">
 {% endblock meta_og %}
 
-{% block title_wrapper %}
-{% endblock %}
+{% block title_wrapper %}{% endblock %}
 
 {% block breadcrumb_menu %}
 <li class="active">{% trans "Home" %}</li>
@@ -78,7 +76,14 @@
 </section>
 
 <section id="content">
-  {% include "includes/episodes-list.html" with episodes=episodes|slice:"1:" cols=3 %}
+  <div class="container">
+    {% include "includes/episodes-list.html" with episodes=episodes|slice:"1:" cols=3 %}
+    <div class="row">
+      <div class="col-md-4 col-md-offset-8">
+        <a class="btn btn-default pull-right" href="/episodes/">Ver mais episódios</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 {% endblock %}

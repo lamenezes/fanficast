@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load i18n  mezzanine_tags staticfiles %}
+{% block meta_title %}{% trans "Episodes" %}{% endblock %}
+{% block title %}{% trans "Episodes" %}{% endblock %}
+{% block breadcrumb_wrapper %} {% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Episodes" %}</li>
+{% endblock %}
+
+{% block all_content %}
+  <div class="container">
+    <section id="episodes">
+      {% include "includes/episodes-list.html" with episodes=episodes cols=3 %}
+
+      <div class="row" style="margin-top: -15px">
+        <div class="col-md-4 col-md-offset-8">
+          <nav aria-label="Episódios">
+            <ul class="pagination pull-right">
+              <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link" href="{% if page_obj.has_previous %}/episodes/?page={{ page_obj.previous_page_number }} {% else %}#{% endif %}">Anterior</a>
+              </li>
+              {% for page_number in paginator.page_range %}
+                <li class="page-item {% if page_number == page_obj.number %} active {% endif %}">
+                  <a class="page-link" href="/episodes/?page={{ page_number }}">{{ page_number }}</a>
+                </li>
+              {% endfor %}
+              <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link" href="{% if page_obj.has_next %}/episodes/?page={{ page_obj.next_page_number }} {% else %}#{% endif %}">Próximo</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}

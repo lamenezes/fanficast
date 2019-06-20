@@ -376,18 +376,18 @@ ul.nav li.dropdown a {
 
 .box-fanfic a {
     text-decoration: none;
-    background-color: #f8f8f8;
+    background-color: #fbfbfb;
     color: inherit;
 }
 
 .box-fanfic a:hover {
     text-decoration: none;
-    background-color: #f8f8f8;
+    background-color: #fbfbfb;
     color: inherit;
 }
 
 .box-fanfic {
-    background-color: #f8f8f8;
+    background-color: #fbfbfb;
 }
 
 .box-fanfic .fanfic-description {
@@ -2104,4 +2104,19 @@ article img.pull-right, article .align-right{
 
 @media (max-width: 360px) {
 
+}
+
+
+/* stuff */
+
+#episodes {
+	position:relative;
+	background:#fff;
+    margin: 0px;
+    padding: 0px;
+}
+
+#episodes img {
+	max-width:100%;
+	height:auto;
 }
