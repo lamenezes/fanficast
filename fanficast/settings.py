@@ -5,81 +5,9 @@ import os
 from django import VERSION as DJANGO_VERSION
 from django.utils.translation import ugettext_lazy as _
 
+import dj_database_url
+from prettyconf import config
 
-######################
-# MEZZANINE SETTINGS #
-######################
-
-# The following settings are already defined with default values in
-# the ``defaults.py`` module within each of Mezzanine's apps, but are
-# common enough to be put here, commented out, for conveniently
-# overriding. Please consult the settings documentation for a full list
-# of settings Mezzanine implements:
-# http://mezzanine.jupo.org/docs/configuration.html#default-settings
-
-# Controls the ordering and grouping of the admin menu.
-#
-# ADMIN_MENU_ORDER = (
-#     ("Content", ("pages.Page", "blog.BlogPost",
-#        "generic.ThreadedComment", (_("Media Library"), "media-library"),)),
-#     ("Site", ("sites.Site", "redirects.Redirect", "conf.Setting")),
-#     ("Users", ("auth.User", "auth.Group",)),
-# )
-
-# A three item sequence, each containing a sequence of template tags
-# used to render the admin dashboard.
-#
-# DASHBOARD_TAGS = (
-#     ("blog_tags.quick_blog", "mezzanine_tags.app_list"),
-#     ("comment_tags.recent_comments",),
-#     ("mezzanine_tags.recent_actions",),
-# )
-
-# A sequence of templates used by the ``page_menu`` template tag. Each
-# item in the sequence is a three item sequence, containing a unique ID
-# for the template, a label for the template, and the template path.
-# These templates are then available for selection when editing which
-# menus a page should appear in. Note that if a menu template is used
-# that doesn't appear in this setting, all pages will appear in it.
-
-# PAGE_MENU_TEMPLATES = (
-#     (1, _("Top navigation bar"), "pages/menus/dropdown.html"),
-#     (2, _("Left-hand tree"), "pages/menus/tree.html"),
-#     (3, _("Footer"), "pages/menus/footer.html"),
-# )
-
-# A sequence of fields that will be injected into Mezzanine's (or any
-# library's) models. Each item in the sequence is a four item sequence.
-# The first two items are the dotted path to the model and its field
-# name to be added, and the dotted path to the field class to use for
-# the field. The third and fourth items are a sequence of positional
-# args and a dictionary of keyword args, to use when creating the
-# field instance. When specifying the field class, the path
-# ``django.models.db.`` can be omitted for regular Django model fields.
-#
-# EXTRA_MODEL_FIELDS = (
-#     (
-#         # Dotted path to field.
-#         "mezzanine.blog.models.BlogPost.image",
-#         # Dotted path to field class.
-#         "somelib.fields.ImageField",
-#         # Positional args for field class.
-#         (_("Image"),),
-#         # Keyword args for field class.
-#         {"blank": True, "upload_to": "blog"},
-#     ),
-#     # Example of adding a field to *all* of Mezzanine's content types:
-#     (
-#         "mezzanine.pages.models.Page.another_field",
-#         "IntegerField", # 'django.db.models.' is implied if path is omitted.
-#         (_("Another name"),),
-#         {"blank": True, "default": 1},
-#     ),
-# )
-
-# Setting to turn on featured images for blog posts. Defaults to False.
-#
-# BLOG_USE_FEATURED_IMAGE = True
 
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
@@ -92,9 +20,7 @@ USE_MODELTRANSLATION = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = [
-    'localhost'
-]
+ALLOWED_HOSTS = config("FANFICAST_ALLOWED_HOSTS", cast=config.list)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -117,10 +43,7 @@ LANGUAGES = (
     ('pt-br', _(u'Português')),
 )
 
-# A boolean that turns on/off debug mode. When set to ``True``, stack traces
-# are displayed for error pages. Should always be set to ``False`` in
-# production. Best set to ``True`` in local_settings.py
-DEBUG = True
+DEBUG = config("FANFICAST_DEBUG", cast=config.boolean)
 
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -142,16 +65,9 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 # DATABASES #
 #############
 
+DATABASE_URL = config("FANFICAST_DATABASE_URL")
 DATABASES = {
-    "default": {
-        # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        # DB name or path to database file if using sqlite3.
-        "NAME": "fanficast",
-        # Not used with sqlite3.
-        "USER": "luiz",
-        "PASSWORD": "fanficast",
-    }
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600),
 }
 
 
@@ -173,11 +89,6 @@ CACHE_MIDDLEWARE_KEY_PREFIX = PROJECT_APP
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = "/static/"
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -220,6 +131,13 @@ TEMPLATES = [
 
 if DJANGO_VERSION < (1, 9):
     del TEMPLATES[0]["OPTIONS"]["builtins"]
+
+SECRET_KEY = config("FANFICAST_SECRET_KEY")
+
+if DEBUG:
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
+else:
+    STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'public', 'static')
 
 
 ################
@@ -333,5 +251,3 @@ except ImportError:
     pass
 else:
     set_dynamic_settings(globals())
-
-SECRET_KEY = os.urandom(32)

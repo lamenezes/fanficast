@@ -1,3 +1,4 @@
 Mezzanine
-mysql-python
+dj-database-url
 django-extensions
+prettyconf
