@@ -1,4 +1,5 @@
 Mezzanine
 dj-database-url
 django-extensions
+mysqlclient
 prettyconf
