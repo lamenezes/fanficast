@@ -482,13 +482,13 @@ section.callaction {
 8. Section: Content
 ==================================== */
 
-#content {
+#content, #episodes {
 	position:relative;
 	background:#fff;
 	padding:0px 0 40px 0;
 }
 
-#content img {
+#content img, #episodes img {
 	max-width:100%;
 	height:auto;
 }
