@@ -135,11 +135,13 @@ if DJANGO_VERSION < (1, 9):
 SECRET_KEY = config("FANFICAST_SECRET_KEY")
 
 if DEBUG:
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"), 'vendor')
 else:
     STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'public', 'static')
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 
 ################
