@@ -28,7 +28,7 @@
     {% with latest_episode=episodes|first %}
     <div class="container">
       <div class="row">
-        <article itemprop="track" itemscope itemtype="http://schema.org/MusicRecording">
+        <article itemprop="track" itemscope itemtype="https://schema.org/MusicRecording">
         <meta itemprop="byArtist" content="Fanficast">
         <meta itemprop="duration" content="{{ latest_episode.length }}">
 
@@ -66,9 +66,9 @@
     <h5>Fanfic, podcast e festa!</h5>
     <span>por Ana Rosa Leme &amp; Nana Castro</span>
     <div id="short-description-icons">
-    <a href="http://feeds.feedburner.com/fanficast" target="_blank">
+    <a href="https://feeds.feedburner.com/fanficast" target="_blank">
       <img src="{% static 'img/rss.png' %}" style="height: 22px"></a>
-    <a href="http://soundcloud.com/fanficast" target="_blank">
+    <a href="https://soundcloud.com/fanficast" target="_blank">
       <img src="{% static 'img/soundcloud.png' %}"></a>
     </div>
   </div>
