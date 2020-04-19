@@ -138,6 +138,7 @@ if DEBUG:
     STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"), 'vendor')
 else:
     STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_ROOT), 'public', 'static')
+    MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
