@@ -7,6 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from mezzanine.blog.models import BlogPost
 
+from .fields import CompressedImageField
+
 
 class Episode(BlogPost):
     """
@@ -21,10 +23,18 @@ class Episode(BlogPost):
     short_description = models.CharField(max_length=256)
 
     # Best resolutions (from best to worst): 1080x600, 810x450, 540x300
-    cover_image = models.ImageField(verbose_name=_('Cover Image (810x450)'))
+    cover_image = CompressedImageField(
+        verbose_name=_('Cover Image (810x450)'),
+        resize_to=(0, 300),
+        image_quality=90,
+    )
 
-    # Best resolutions (from best to worst): 1080x600, 810x450, 540x300
-    cover_image_square = models.ImageField(verbose_name=_('Square Cover Image (600x600)'), blank=True)
+    cover_image_square = CompressedImageField(
+        verbose_name=_('Square Cover Image (600x600)'),
+        resize_to=(0, 300),
+        image_quality=90,
+        blank=True,
+    )
 
     episode_link = models.URLField(blank=True)
 
